@@ -1,0 +1,10 @@
+address  = "${addr}"
+address2  = "${addr2}"
+self  = "${self}"
+self2  = "${self2}"
+eni  = "${eni}"
+eni2  = "${eni2}"
+vip = "${vip}"
+
+username = "${username}"
+port = "${port}" 

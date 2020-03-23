@@ -1,0 +1,11 @@
+# terraform
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+*.pem
+*~
+~.bak

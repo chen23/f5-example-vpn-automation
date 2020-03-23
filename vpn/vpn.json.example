@@ -1,0 +1,57 @@
+{
+    "class": "ADC",
+    "schemaVersion": "3.5.0",
+    "id": "vpn_id",
+    "label": "VPN App",
+    "remark": "VPN App",
+    "VPN_App": {
+        "class": "Tenant",
+        "VPN_Service": {
+            "class": "Application",
+            "template": "https",
+            "serviceMain": {
+                "class": "Service_HTTPS",
+                "virtualAddresses": [
+                    "${vip}"
+                ],
+                "virtualPort": 443,
+                "serverTLS": "/VPN_App/VPN_Service/pTlsServer_Local",
+                "profileAccess": {
+                    "use": "accessProfile"
+                },
+                "profileConnectivity": {
+                	"bigip": "/Common/erchenConnect"
+                }
+            },
+            "pTlsServer_Local": {
+                "class": "TLS_Server",
+                "label": "simplest decl requires just cert",
+                "certificates": [
+                    {
+                        "certificate": "tlsserver_local_cert"
+                    }
+                ],
+                "authenticationTrustCA": "testTrustCA",
+                "authenticationMode": "require"
+            },
+            "tlsserver_local_cert": {
+                "class": "Certificate",
+                "certificate": {
+                    "bigip": "/Common/default.crt"
+                },
+                "privateKey": {
+                    "bigip": "/Common/default.key"
+                }
+            },
+            "testTrustCA": {
+                "class": "CA_Bundle",
+                "bundle": "-----BEGIN CERTIFICATE-----\nMIIDwDCCAqigAwIBAgIUSyLvmqF4/9pec5vaNvyovNal4DgwDQYJKoZIhvcNAQEL\nBQAwWTELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcT\nB1NlYXR0bGUxFDASBgNVBAoTC0Y1IE5ldHdvcmtzMQ0wCwYDVQQLEwREZW1vMB4X\nDTE5MDQwOTAwMTIwMFoXDTI0MDQwNzAwMTIwMFowczELMAkGA1UEBhMCVVMxEzAR\nBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcTB1NlYXR0bGUxFDASBgNVBAoTC0Y1\nIE5ldHdvcmtzMQ0wCwYDVQQLEwREZW1vMRgwFgYDVQQDEw9JbnRlcm1lZGlhdGUg\nQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDqGH7TPx97sZ0x0o+8\n82Bc32g4RtVGAy/mDjfgvco7hgxaV5wf2O4fEtCMBLYrDl2YRaRYvZPU11Urd/Dx\nvq6w6+OF6hHYfGe6tWhjbObtmliZGySKz4bU/nLUXdePzlLoCjN2YjpCFM8nSnHk\nFZ0uipw9I20+XHVWvcbSrWbtqvOJ0CDvpMqB3T4OHNcV0gTndsMfmKxBGItKN6Dj\n+9S1icIhrPZbew0y484YFetXS/EPPDpo2lkWY/HxQcfZOi3DdQeTVmN6gA66VaHc\n56ih4NejAVTGYl4sxATuxpeQPNiir2EO+irbDCUh5HREUKSycmaSsVryGzf0o4FP\n7ptPAgMBAAGjZjBkMA4GA1UdDwEB/wQEAwIBhjASBgNVHRMBAf8ECDAGAQH/AgEB\nMB0GA1UdDgQWBBTkgrVrO0akioyNLWoMHsQ5MwlHTTAfBgNVHSMEGDAWgBRkzB44\neEQlLGaY1CwbuiVRM/cPijANBgkqhkiG9w0BAQsFAAOCAQEAUOTewwhwIqeagXYD\nn6MmCfBhdXbmrHtL/UsrE4FtjM28xYW+5wdL0mG7WFB/tff+b9bmzOxB4mytE8Fq\ns/zOPWAhkHA+2TiIyfVKjisx3srIP32PRiHGixY2xeTd17qL+7a8b17xU8kq7XtQ\n0eKbIJFZ3LbacIrRn73QgxyEOGxA1HMT6c1uY1FsvNyeV3K/0vsokBCL4/cFSOaH\nA86uQg96XR5xWjf38DKmKr0fjasBw638SlS53nn+CVlvVZNB0g7EIm7U8E0SlSoo\n17DhigOOfffhURMlJYa8qlSz/ZJKaXhqcgX2Hl4Ho378RHfzXXe9qk7z50kC3l+C\nxwC7gQ==\n-----END CERTIFICATE-----\n-----BEGIN CERTIFICATE-----\nMIIDpjCCAo6gAwIBAgIUSpuabxnXu19oLF0fLKu17PNAtqEwDQYJKoZIhvcNAQEL\nBQAwWTELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcT\nB1NlYXR0bGUxFDASBgNVBAoTC0Y1IE5ldHdvcmtzMQ0wCwYDVQQLEwREZW1vMB4X\nDTE4MDQyMDA2NDMwMFoXDTIzMDQxOTA2NDMwMFowWTELMAkGA1UEBhMCVVMxEzAR\nBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcTB1NlYXR0bGUxFDASBgNVBAoTC0Y1\nIE5ldHdvcmtzMQ0wCwYDVQQLEwREZW1vMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A\nMIIBCgKCAQEA5B7v5d/xsEWcmLfhtHDZAE8vAn3qmiEMLT5lFSdxzCg6h0JkqeDF\niv50OGW00h2almjgEDMW+ldmjW+bSlWz5kpqdmzTXLnmw6/UN4Da+8odsw0abplS\n6DNz/xjWcdw4YiLFY167AmtDUNXaJ/jTBAgWGYJy/rl2u1vpi1CWiJozpR/g/Jsb\nbAxPXG54ZZi2yUbCVh12DmjAqBfU3LFCvvOQHYyjCon76sLnXifrWSjb8EOVJZc8\nVw3IdRq0vf74Q62RgQXNAd1G5hme7kl/RdrrWqxlxCK8XXU2RSVnAX5baVxY/HC0\nlvXKsfFbJec+DkTAaZLZN4KJLfkvoylLXQIDAQABo2YwZDAOBgNVHQ8BAf8EBAMC\nAQYwEgYDVR0TAQH/BAgwBgEB/wIBAjAdBgNVHQ4EFgQUZMweOHhEJSxmmNQsG7ol\nUTP3D4owHwYDVR0jBBgwFoAUZMweOHhEJSxmmNQsG7olUTP3D4owDQYJKoZIhvcN\nAQELBQADggEBAN0914undNu7bLOk+wVOTvfkL14jAoRCmv/rQBwvJoWNuU7d7TKk\nD0SZ/GME8kNg9RIAY/POCTiISrORIkoMwt4eLv0bDejualvJ7MwqOvgdFby6BuGg\n5dVioFfcwQA/i4L0smHX8QY+w8+RlD7DZnHKcx/C7sPHCkrqmLYLDQSalvv8KgwF\nmBB/SBS/yACKpaJPCC3Vlj7aPt5aS6GmH25LpAeDM7LLrDHLj+osLbhkGou0ifYy\n8RelfbJlI37NjVMJRWF1EsuSG0xYJPFg9/nqM6UPUHxLx+MmSJ6ibBj6MF6cYkKQ\n5Okq/kt3E65/mPltGVmGYPFzwfqLIJFx13E=\n-----END CERTIFICATE-----"
+            },
+                        "accessProfile": {
+            	"class": "Access_Profile",
+            	"url": "http://example.com/profile_Common_erchen_ap.conf.tar",
+            	"ignoreChanges": true
+            }
+        }
+    }
+}

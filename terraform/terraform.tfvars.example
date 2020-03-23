@@ -1,0 +1,3 @@
+prefix="your-unique-prefix"
+ssh_key="your-ssh-key"
+aws_region="your-aws-region"
