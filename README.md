@@ -91,13 +91,48 @@ terraform apply
 
 After this completes you will want to verify that BIG-IP #1 is the "Active" device.
 
+You can ssh to BIG-IP 2 "admin@[BIG-IP 2]" and run the following command.
+```
+(tmos)# run /sys failover standby
+```
+
 Once you have verified that it is active you should be able to run the following command to connect.
 
 ```
 # note the use of HTTPS
 f5fpc -t https://192.0.2.220 -x --cert ./client.crt --key ./client.key -u user -p pass --start
 ```
+You can then run the info command to verify your connection.
 
+```
+$ f5fpc --info
+Connection Status: session established
+Favorites Information:
+______________________
+fav-Id   fav-Type  fav-Status       fav-Name
+326      vpn        established     /VPN_App/accessProfile-erchenNetworkAccess
+
+
+Favorites Extended Info:
+________________________
+Fav-Id: 326  Fav-Name: /VPN_App/accessProfile-erchenNetworkAccess
+Tunnel Port:                    443
+Tunnel Protocol:                TCP
+Tunnel Security Protocol:       TLSv1.2
+Tunnel Cipher Strength:         128
+Tunnel Hash Algorithm:          AEAD
+Tunnel Cipher Algorithm:        AESGCM(128)
+Tunnel PKI Algorithm:           ECDH
+Tunnel Client IPv4 Address:     192.168.100.10
+Tunnel Client IPv6 Address:
+Tunnel Server IPv4 Address:     1.1.1.1
+Tunnel Server IPv6 Address:
+Tunnel GZip Compression:        Disabled
+Tunnel Bytes In:                2075
+Tunnel Bytes In (Low):          196
+Tunnel Bytes Out:               3192
+Tunnel Bytes Out (Low):         610
+```
 Once connected you should be able to connect to the backend VM.
 
 ```
