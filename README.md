@@ -13,6 +13,7 @@ across AZ using the supported CFT from https://github.com/F5Networks/f5-aws-clou
 
 ## What you'll need
 
+- Linux box (RHEL/CentOS/Debian/Ubuntu)
 - Terraform
 - Docker
 - AWS CLI
