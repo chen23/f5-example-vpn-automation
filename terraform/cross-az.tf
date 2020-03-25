@@ -28,6 +28,6 @@ resource "aws_cloudformation_stack" "cross-az"  {
 	timezone = "UTC"
 	}
 #  template_url = "https://f5-cft.s3.amazonaws.com/f5-existing-stack-across-az-cluster-payg-3nic-bigip.template"
-#  template_url = "https://${aws_s3_bucket.tf_s3_bucket.bucket_domain}/f5-existing-stack-across-az-cluster-payg-3nic-bigip.template"
+  template_url = "https://${aws_s3_bucket.tf_s3_bucket.bucket_domain_name}/f5-existing-stack-across-az-cluster-payg-3nic-bigip.template"
 #  template_body = file("${path.module}/f5-existing-stack-across-az-cluster-payg-3nic-bigip.template")
 }
