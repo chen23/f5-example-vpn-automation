@@ -21,8 +21,7 @@
                 "virtualPort": 0,
                 "forwardingType": "ip",
                 "layer4": "tcp",
-                "profileL4": "basic",
-                "snat": "none"
+                "profileL4": "basic"
             }
         },
         "VPN_Service": {
