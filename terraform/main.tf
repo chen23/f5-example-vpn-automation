@@ -1,7 +1,7 @@
 # S3 bucket for CFT / Profile
 
 resource "aws_s3_bucket" "tf_s3_bucket" {
-  bucket = "${var.prefix}-cross-az-tf-s3bucket"
+  bucket_prefix = "${var.prefix}-cross-az-tf-s3bucket"
 }
 
 # customized CFT template (private)
