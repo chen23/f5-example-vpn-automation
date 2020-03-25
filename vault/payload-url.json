@@ -1,0 +1,4 @@
+{
+  "issuing_certificates": "http://127.0.0.1:8200/v1/pki/ca",
+  "crl_distribution_points": "http://127.0.0.1:8200/v1/pki/crl"
+}

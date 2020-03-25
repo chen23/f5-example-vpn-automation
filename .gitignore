@@ -5,7 +5,7 @@
 *.tfstate
 *.tfstate.*
 *.tfvars
-
+*.tfvars.json
 *.pem
 *~
 ~.bak
