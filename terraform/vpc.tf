@@ -15,12 +15,12 @@ module "vpc" {
   intra_subnets = ["10.1.20.0/24","10.1.21.0/24","10.1.22.0/24"]
   intra_route_table_tags = {
     f5_cloud_failover_label = "${var.prefix}-cross-az-stack"
-    f5_self_ips = "${aws_cloudformation_stack.cross-az.outputs.Bigip1ExternalInterfacePrivateIp},${aws_cloudformation_stack.cross-az.outputs.Bigip2ExternalInterfacePrivateIp}"
+#    f5_self_ips = "${aws_cloudformation_stack.cross-az.outputs.Bigip1ExternalInterfacePrivateIp},${aws_cloudformation_stack.cross-az.outputs.Bigip2ExternalInterfacePrivateIp}"
 }
 
   public_route_table_tags = {
     f5_cloud_failover_label = "${var.prefix}-cross-az-stack"
-    f5_self_ips = "${aws_cloudformation_stack.cross-az.outputs.Bigip1ExternalInterfacePrivateIp},${aws_cloudformation_stack.cross-az.outputs.Bigip2ExternalInterfacePrivateIp}"
+#    f5_self_ips = "${aws_cloudformation_stack.cross-az.outputs.Bigip1ExternalInterfacePrivateIp},${aws_cloudformation_stack.cross-az.outputs.Bigip2ExternalInterfacePrivateIp}"
 }
 
   enable_nat_gateway = false
@@ -40,23 +40,25 @@ module "vpc" {
 #    f5_self_ips = "${aws_cloudformation_stack.cross-az.outputs.Bigip1InternalInterfacePrivateIp},${aws_cloudformation_stack.cross-az.outputs.Bigip2InternalInterfacePrivateIp}"
 #  }
 #}
-resource "aws_route" "outbound_intra_route" {
-route_table_id  = "${module.vpc.intra_route_table_ids[0]}"
-destination_cidr_block = "0.0.0.0/0"
-network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1InternalInterface}"
-}
 
-resource "aws_route" "vpn_intra_route" {
-route_table_id  = "${module.vpc.intra_route_table_ids[0]}"
-destination_cidr_block = "192.168.100.0/24"
-network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1subnet1Az1Interface}"
-}
 
-resource "aws_route" "vpn_public_route" {
-route_table_id  = "${module.vpc.public_route_table_ids[0]}"
-destination_cidr_block = "192.168.100.0/24"
-network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1subnet1Az1Interface}"
-}
+# resource "aws_route" "outbound_intra_route" {
+# route_table_id  = "${module.vpc.intra_route_table_ids[0]}"
+# destination_cidr_block = "0.0.0.0/0"
+# network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1InternalInterface}"
+# }
+
+# resource "aws_route" "vpn_intra_route" {
+# route_table_id  = "${module.vpc.intra_route_table_ids[0]}"
+# destination_cidr_block = "192.168.100.0/24"
+# network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1subnet1Az1Interface}"
+# }
+
+# resource "aws_route" "vpn_public_route" {
+# route_table_id  = "${module.vpc.public_route_table_ids[0]}"
+# destination_cidr_block = "192.168.100.0/24"
+# network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1subnet1Az1Interface}"
+# }
 
 
 #resource "aws_eip" "f5" {
