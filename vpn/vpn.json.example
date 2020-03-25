@@ -6,6 +6,24 @@
     "remark": "VPN App",
     "VPN_App": {
         "class": "Tenant",
+"SampleApp": {
+            "class": "Application",
+            "template": "generic",
+            "myService": {
+                "class": "Service_Forwarding",
+                "remark": "Example Forwarding Virtual Server",
+                "virtualAddresses": [
+                    [
+                        "0.0.0.0",
+                        "0.0.0.0/0"
+                    ]
+                ],
+                "virtualPort": 0,
+                "forwardingType": "ip",
+                "layer4": "tcp",
+                "profileL4": "basic"
+            }
+        },
         "VPN_Service": {
             "class": "Application",
             "template": "https",
