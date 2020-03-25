@@ -27,5 +27,7 @@ resource "aws_cloudformation_stack" "cross-az"  {
 	subnet2Az2= "${module.vpc.intra_subnets[1]}"
 	timezone = "UTC"
 	}
-  template_url = "https://f5-cft.s3.amazonaws.com/f5-existing-stack-across-az-cluster-payg-3nic-bigip.template"
+#  template_url = "https://f5-cft.s3.amazonaws.com/f5-existing-stack-across-az-cluster-payg-3nic-bigip.template"
+  template_url = "https://erchen-f5.s3.amazonaws.com/f5-existing-stack-across-az-cluster-payg-3nic-bigip.template"
+#  template_body = file("${path.module}/f5-existing-stack-across-az-cluster-payg-3nic-bigip.template")
 }
