@@ -6,6 +6,16 @@ Inspired by: https://github.com/hashicorp/f5-terraform-consul-sd-webinar
 
 # How to use this repo
 
+# What does it do?
+
+In this example we will use HashiCorp Terraform to create an AWS VPC and deploy a pair of BIG-IP
+devices and a backend Ubuntu host.
+
+SSL VPN will be configured to use client certificate authentication (mutual TLS) and
+use certificates from HashiCorp Vault.
+
+You will connect using the F5 VPN CLI client (Linux/Raspberry Pi) to verify connectivity.
+
 ## Provision Infrastructure
 
 The `terraform` directory has tf files for creating a VPC with BIG-IP in an A/S deployment 
@@ -14,10 +24,10 @@ across AZ using the supported CFT from https://github.com/F5Networks/f5-aws-clou
 ## What you'll need
 
 - Linux box (RHEL/CentOS/Debian/Ubuntu)
-- Terraform
-- Docker
-- AWS CLI
-- F5 VPN CLI
+- Terraform (used to deploy in AWS)
+- Docker (used to deploy a local Vault)
+- AWS CLI (used to access S3 buckets)
+- F5 VPN CLI (used to verify connectivity)
 
 You will also need to accept the T&C of the BIG-IP in the AWS marketplace prior to running this example.
 
