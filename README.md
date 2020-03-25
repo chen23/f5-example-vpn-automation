@@ -62,6 +62,21 @@ terraform apply
   - This will also seed a `terraform.tfvars` file in the `vpn` directory for use in the next step
   - It may take several minutes for this step to complete.  Verify the BIG-IP is fully up and running (in an HA pair) before proceeding.
 
+After this completes you should see
+
+```
+Apply complete! Resources: 39 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+BIG-IP_1 = https://192.0.2.10
+BIG-IP_2 = https://192.0.2.110
+Backend = 192.0.2.200
+Backend_Private = 10.1.10.202
+S3Bucket = chen23-cross-az-stack-s3bucket-t7ksuasmgg97
+VPN = http://192.0.2.220:80
+```
+
 ## Configure BIG-IP
 
 Next we will update the AS3 environment.  Deploy a VPN connectivity profile (using iControl REST) and create a VPN configuration using AS3.
@@ -74,3 +89,29 @@ terraform plan
 terraform apply
 ```
 
+After this completes you will want to verify that BIG-IP #1 is the "Active" device.
+
+Once you have verified that it is active you should be able to run the following command to connect.
+
+```
+# note the use of HTTPS
+f5fpc -t https://192.0.2.220 -x --cert ./client.crt --key ./client.key -u user -p pass --start
+```
+
+Once connected you should be able to connect to the backend VM.
+
+```
+$ curl 10.1.10.202
+___ ___   ___                    _
+| __| __| |   \ ___ _ __  ___    /_\  _ __ _ __
+| _||__ \ | |) / -_) '  \/ _ \  / _ \| '_ \ '_ \
+|_| |___/ |___/\___|_|_|_\___/ /_/ \_\ .__/ .__/
+                                      |_|  |_|
+================================================
+      Node Name: Example of F5 VPN Automation
+     Short Name: ip-10-1-10-109
+      Server IP: 10.1.10.109
+    Server Port: 80
+      Client IP: 10.1.10.12
+    Client Port: 51050
+```
