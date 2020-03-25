@@ -11,7 +11,7 @@ resource "aws_cloudformation_stack" "cross-az"  {
 	declarationUrl = "none"
 	environment = "f5env"
 	group = "f5group"
-	imageName = "Best1000Mbps"
+	imageName = "Best25Mbps"
 	instanceType = "m5.xlarge"
 	managementSubnetAz1 = "${module.vpc.public_subnets[0]}"
 	managementSubnetAz2 = "${module.vpc.public_subnets[1]}"
