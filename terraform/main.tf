@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "tf_s3_bucket" {
 # customized CFT template (private)
 
 resource "aws_s3_bucket_object" "custom_cft" {
-  bucket = "${var.prefix}-cross-az-tf-s3bucket"
+  bucket = "${aws_s3_bucket.tf_s3_bucket.id}"
   key = "f5-existing-stack-across-az-cluster-payg-3nic-bigip.template"
   source = "f5-existing-stack-across-az-cluster-payg-3nic-bigip.template"
 }
@@ -15,7 +15,7 @@ resource "aws_s3_bucket_object" "custom_cft" {
 # APM profile (public)
 
 resource "aws_s3_bucket_object" "custom_profile" {
-  bucket = "${var.prefix}-cross-az-tf-s3bucket"
+  bucket = "${aws_s3_bucket.tf_s3_bucket.id}"
   key = "profile_Common_erchen_ap.conf.tar"
   source = "profile_Common_erchen_ap.conf.tar"
   acl = "public-read"
@@ -47,7 +47,7 @@ data "template_file" "json" {
     certificate = "${replace(vault_pki_secret_backend_cert.vpn_cert.certificate,"\n","\\n")}",
     private_key = "${replace(vault_pki_secret_backend_cert.vpn_cert.private_key,"\n","\\n")}",
     ca_certificate = "${replace(vault_pki_secret_backend_cert.vpn_cert.issuing_ca,"\n","\\n")}",
-    bucket = "${var.prefix}-cross-az-tf-s3bucket"
+    bucket = "${aws_s3_bucket.tf_s3_bucket.id}"
   }
 }
 
