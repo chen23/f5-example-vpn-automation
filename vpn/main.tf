@@ -11,7 +11,7 @@ provider "bigip" {
 # download rpm
 resource "null_resource" "download_as3" {
   provisioner "local-exec" {
-    command = "wget ${var.as3_rpm_url}"
+    command = "curl -O -L -J ${var.as3_rpm_url}"
   }
 }
 
@@ -35,6 +35,14 @@ resource "null_resource" "install2_as3" {
 resource "null_resource" "create_connectivit_profile" {
   provisioner "local-exec" {
     command = "./create_connectivity_profile.sh ${var.address}:${var.port} admin:${var.password}"
+  }
+  depends_on = [null_resource.download_as3]
+}
+
+# CFE
+resource "null_resource" "declare_cfe" {
+  provisioner "local-exec" {
+    command = "./declare_cfe.sh https://${var.address}:${var.port} admin:${var.password}"
   }
   depends_on = [null_resource.download_as3]
 }
