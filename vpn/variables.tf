@@ -5,6 +5,7 @@ variable "port" {}
 variable "username" {}
 variable "password" {}
 variable "vpn" {}
+variable "route_table_id" {}
 variable "as3_rpm" {
   default = "f5-appsvcs-3.18.0-4.noarch.rpm"
 }

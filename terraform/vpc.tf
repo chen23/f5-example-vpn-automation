@@ -48,17 +48,17 @@ module "vpc" {
 # network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1InternalInterface}"
 # }
 
-# resource "aws_route" "vpn_intra_route" {
-# route_table_id  = "${module.vpc.intra_route_table_ids[0]}"
-# destination_cidr_block = "192.168.100.0/24"
-# network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1subnet1Az1Interface}"
-# }
+ resource "aws_route" "vpn_intra_route" {
+ route_table_id  = "${module.vpc.intra_route_table_ids[0]}"
+ destination_cidr_block = "192.168.100.0/24"
+ network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1subnet1Az1Interface}"
+ }
 
-# resource "aws_route" "vpn_public_route" {
-# route_table_id  = "${module.vpc.public_route_table_ids[0]}"
-# destination_cidr_block = "192.168.100.0/24"
-# network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1subnet1Az1Interface}"
-# }
+ resource "aws_route" "vpn_public_route" {
+ route_table_id  = "${module.vpc.public_route_table_ids[0]}"
+ destination_cidr_block = "192.168.100.0/24"
+ network_interface_id = "${aws_cloudformation_stack.cross-az.outputs.Bigip1subnet1Az1Interface}"
+ }
 
 
 #resource "aws_eip" "f5" {

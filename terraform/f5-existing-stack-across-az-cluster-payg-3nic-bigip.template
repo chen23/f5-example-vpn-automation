@@ -1755,7 +1755,7 @@
            "      },\n",
            "      \"scopingAddressRanges\":[\n",
            "           {\n",
-           "             \"range\":\"192.0.2.0\\/24\"\n",
+           "             \"range\":\"192.168.100.0/24\"\n",
            "           }\n",
            "       ],\n",
            "      \"defaultNextHopAddresses\":{\n",
@@ -2030,6 +2030,7 @@
   "Bigip1InternalInterface": {
    "Properties": {
     "Description": "Internal Interface for the BIG-IP",
+    "SourceDestCheck": false,
     "GroupSet": [
      {
       "Ref": "bigipInternalSecurityGroup"
@@ -3015,6 +3016,7 @@
   "Bigip2InternalInterface": {
    "Properties": {
     "Description": "Internal Interface for the BIG-IP",
+    "SourceDestCheck": false,
     "GroupSet": [
      {
       "Ref": "bigipInternalSecurityGroup"

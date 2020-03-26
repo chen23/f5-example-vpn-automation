@@ -36,6 +36,7 @@ data "template_file" "tfvars" {
     vip       = "${aws_cloudformation_stack.cross-az.outputs.Bigip1VipPrivateIp}",
     vip2       = "${aws_cloudformation_stack.cross-az.outputs.Bigip2VipPrivateIp}",
     vpn = "${aws_cloudformation_stack.cross-az.outputs.Bigip1VipEipAddress}",
+    route_table_id = "${module.vpc.public_route_table_ids[0]}",
     port     = "443",
     username = "admin"
   }

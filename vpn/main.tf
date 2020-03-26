@@ -39,12 +39,12 @@ resource "null_resource" "create_connectivit_profile" {
   depends_on = [null_resource.download_as3]
 }
 # CFE
-resource "null_resource" "declare_cfe" {
-  provisioner "local-exec" {
-    command = "./declare_cfe.sh https://${var.address}:${var.port} admin:${var.password}"
-  }
-  depends_on = [null_resource.download_as3]
-}
+#resource "null_resource" "declare_cfe" {
+#  provisioner "local-exec" {
+#    command = "./declare_cfe.sh https://${var.address}:${var.port} admin:${var.password}"
+#  }
+#  depends_on = [null_resource.download_as3]
+#}
 # failover to BIG-IP 1
 resource "null_resource" "failover" {
   provisioner "local-exec" {

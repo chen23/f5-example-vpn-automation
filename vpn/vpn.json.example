@@ -21,7 +21,8 @@
                 "virtualPort": 0,
                 "forwardingType": "ip",
                 "layer4": "tcp",
-                "profileL4": "basic"
+                "profileL4": "basic",
+                "snat":"none"
             }
         },
         "VPN_Service": {
@@ -40,7 +41,8 @@
                 },
                 "profileConnectivity": {
                 	"bigip": "/Common/erchenConnect"
-                }
+                },
+                "snat":"none"
             },
             "pTlsServer_Local": {
                 "class": "TLS_Server",
