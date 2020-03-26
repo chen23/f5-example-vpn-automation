@@ -14,7 +14,7 @@ devices and a backend Ubuntu host.
 SSL VPN will be configured to use client certificate authentication (mutual TLS) and
 use certificates from HashiCorp Vault.
 
-You will connect using the F5 VPN CLI client (Linux/Raspberry Pi) to verify connectivity.
+You will connect using the F5 VPN CLI client (Linux/Raspberry Pi) to verify connectivity (using split-tunnel).
 
 ## Provision Infrastructure
 
@@ -166,6 +166,6 @@ ___ ___   ___                    _
      Short Name: ip-10-1-10-202
       Server IP: 10.1.10.202
     Server Port: 80
-      Client IP: 10.1.10.12
+      Client IP: 192.168.100.10
     Client Port: 51050
 ```
