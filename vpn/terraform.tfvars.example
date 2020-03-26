@@ -5,6 +5,8 @@ self2  = "${self2}"
 eni  = "${eni}"
 eni2  = "${eni2}"
 vip = "${vip}"
+vpn = "${vpn}"
+backend = "${backend}"
 
 username = "${username}"
 port = "${port}" 

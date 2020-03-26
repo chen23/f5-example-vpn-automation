@@ -27,7 +27,6 @@ across AZ using the supported CFT from https://github.com/F5Networks/f5-aws-clou
 - Terraform (used to deploy in AWS)
 - Docker (used to deploy a local Vault)
 - AWS CLI (used to access S3 buckets)
-- F5 VPN CLI (used to verify connectivity)
 
 You will also need to accept the T&C of the BIG-IP in the AWS marketplace prior to running this example.
 
@@ -98,13 +97,23 @@ terraform init
 terraform plan
 terraform apply
 ```
+You should see the following output (if you need to see this again run `terraform output`
 
-After this completes you will want to verify that BIG-IP #1 is the "Active" device.
+```
+BIG-IP_1 = https://192.0.2.10
+BIG-IP_2 = https://192.0.2.110
+Backend_Test = http://10.1.10.202/txt
+Client_DEB = curl --cert ./client.crt --key ./client.key https://192.0.2.220:443/public/download/linux_f5cli.x86_64.deb -k -O -L -J
+Client_RPM = curl --cert ./client.crt --key ./client.key https://192.0.2.220:443/public/download/linux_f5cli.x86_64.rpm -k -O -L -J 
+Password = [random password]
+Username = admin
+VPN_Connect = f5fpc -t https://192.0.2.220:443 -x --cert ./client.crt --key ./client.key -u user -p pass --start
+```
+If you do not have the F5 VPN CLI client installed you can use the provided curl commands to download the appropriate package.
 
-You can ssh to BIG-IP 2 "admin@[BIG-IP 2]" and run the following command.
-```
-(tmos)# run /sys failover standby
-```
+You will want to verify that BIG-IP #1 is the "Active" device.
+
+You can do this either via SSH (using key or password) or via GUI (password).
 
 Once you have verified that it is active you should be able to run the following command to connect.
 
@@ -146,7 +155,7 @@ Tunnel Bytes Out (Low):         610
 Once connected you should be able to connect to the backend VM.
 
 ```
-$ curl 10.1.10.202
+$ curl http://10.1.10.202/txt
 ___ ___   ___                    _
 | __| __| |   \ ___ _ __  ___    /_\  _ __ _ __
 | _||__ \ | |) / -_) '  \/ _ \  / _ \| '_ \ '_ \
@@ -154,8 +163,8 @@ ___ ___   ___                    _
                                       |_|  |_|
 ================================================
       Node Name: Example of F5 VPN Automation
-     Short Name: ip-10-1-10-109
-      Server IP: 10.1.10.109
+     Short Name: ip-10-1-10-202
+      Server IP: 10.1.10.202
     Server Port: 80
       Client IP: 10.1.10.12
     Client Port: 51050

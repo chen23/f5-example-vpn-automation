@@ -1,8 +1,10 @@
 variable "address" {}
 variable "address2" {}
+variable "backend" {}
 variable "port" {}
 variable "username" {}
 variable "password" {}
+variable "vpn" {}
 variable "as3_rpm" {
   default = "f5-appsvcs-3.18.0-4.noarch.rpm"
 }

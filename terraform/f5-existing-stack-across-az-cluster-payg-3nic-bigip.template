@@ -794,11 +794,11 @@
     "Fn::Join": [
      "",
      [
-      "http://",
+      "https://",
       {
        "Ref": "Bigip1VipEipAddress"
       },
-      ":80"
+      ":443"
      ]
     ]
    }

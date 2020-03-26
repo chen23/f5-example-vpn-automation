@@ -28,12 +28,14 @@ data "template_file" "tfvars" {
   vars = {
     addr     = "${aws_cloudformation_stack.cross-az.outputs.Bigip1ManagementEipAddress}",
     addr2     = "${aws_cloudformation_stack.cross-az.outputs.Bigip2ManagementEipAddress}",
+    backend  = "${aws_instance.backend.private_ip}",
     self     = "${aws_cloudformation_stack.cross-az.outputs.Bigip1ExternalInterfacePrivateIp}",
     self2     = "${aws_cloudformation_stack.cross-az.outputs.Bigip2ExternalInterfacePrivateIp}",
     eni     = "${aws_cloudformation_stack.cross-az.outputs.Bigip1InternalInterface}",
     eni2     = "${aws_cloudformation_stack.cross-az.outputs.Bigip2InternalInterface}",
     vip       = "${aws_cloudformation_stack.cross-az.outputs.Bigip1VipPrivateIp}",
     vip2       = "${aws_cloudformation_stack.cross-az.outputs.Bigip2VipPrivateIp}",
+    vpn = "${aws_cloudformation_stack.cross-az.outputs.Bigip1VipEipAddress}",
     port     = "443",
     username = "admin"
   }
