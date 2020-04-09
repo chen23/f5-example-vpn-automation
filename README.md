@@ -27,14 +27,15 @@ across AZ using the supported CFT from https://github.com/F5Networks/f5-aws-clou
 - Terraform (used to deploy in AWS)
 - Docker (used to deploy a local Vault)
 - AWS CLI (used to access S3 buckets)
+- jq
 
 You will also need to accept the T&C of the BIG-IP in the AWS marketplace prior to running this example.
 
 ## Steps 
 - Clone the repository & change working directory to vault
 ```
-git clone https://github.com/hashicorp/f5-terraform-consul-sd-webinar
-cd f5-terraform-consul-sd-webinar/vault/
+git clone https://github.com/chen23/f5-example-vpn-automation.git
+cd f5-example-vpn-automation/vault/
 ```
 
 You will need to setup a dev instance of vault that will run in Docker.
@@ -48,7 +49,7 @@ source env.sh
 
 Next you will need to change into the terraform directory.
 ```
-cd ../vault/
+cd ../terraform/
 ```
 
 - Create Terraform run
